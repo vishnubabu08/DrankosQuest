@@ -1,0 +1,21 @@
+                        -HE:\unity\2Dproject\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=23
+-DANDROID_PLATFORM=android-23
+-DANDROID_ABI=armeabi-v7a
+-DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a
+-DANDROID_NDK=D:\uinity6installs\6000.0.43f1\Editor\Data\PlaybackEngines\AndroidPlayer\NDK
+-DCMAKE_ANDROID_NDK=D:\uinity6installs\6000.0.43f1\Editor\Data\PlaybackEngines\AndroidPlayer\NDK
+-DCMAKE_TOOLCHAIN_FILE=D:\uinity6installs\6000.0.43f1\Editor\Data\PlaybackEngines\AndroidPlayer\NDK\build\cmake\android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=D:\uinity6installs\6000.0.43f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\cmake\3.22.1\bin\ninja.exe
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=E:\unity\2Dproject\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\52c2t451\obj\armeabi-v7a
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=E:\unity\2Dproject\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\52c2t451\obj\armeabi-v7a
+-DCMAKE_BUILD_TYPE=RelWithDebInfo
+-DCMAKE_FIND_ROOT_PATH=E:\unity\2Dproject\.utmp\RelWithDebInfo\52c2t451\prefab\armeabi-v7a\prefab
+-BE:\unity\2Dproject\.utmp\RelWithDebInfo\52c2t451\armeabi-v7a
+-GNinja
+-DANDROID_STL=c++_shared
+-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON
+                        Build command args: []
+                        Version: 2
