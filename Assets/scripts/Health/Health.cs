@@ -35,6 +35,12 @@ public class Health : MonoBehaviour
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         spritRend = GetComponent<SpriteRenderer>();
+
+        // If you forgot to assign it in the inspector, assume it is THIS object
+        if (MobControl == null)
+        {
+            MobControl = this.gameObject;
+        }
     }
     private void Update()
     {
@@ -46,28 +52,36 @@ public class Health : MonoBehaviour
     }
     public void TakeDamage(float _damage)
     {
+        if (invulnerable) return;
 
-        if(invulnerable)return;
+        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
-        currentHealth = Mathf.Clamp(currentHealth-_damage, 0,startingHealth);
-           
-
-        if(currentHealth > 0)
+        if (currentHealth > 0)
         {
             anim.SetTrigger("hurt");
             StartCoroutine(Invunerability());
-            AudioManager.instance.PlaySound(HurtSound);
+            if (HurtSound != null) AudioManager.instance.PlaySound(HurtSound); // Safe check for sound too
         }
-
         else
         {
             if (!dead)
             {
-                MobControl.SetActive(false);
-               
+                // --- FIX STARTS HERE ---
+                // Only try to disable MobControl if it has been assigned
+                if (MobControl != null)
+                {
+                    MobControl.SetActive(false);
+                }
+                else
+                {
+                    // If MobControl is missing, disable the object this script is attached to as a fallback
+                    Debug.LogWarning("MobControl was not assigned on " + gameObject.name + ". Disabling self instead.");
+                    gameObject.SetActive(false);
+                }
+                // --- FIX ENDS HERE ---
 
-                if(GetComponent<playermovement>() != null)
-                GetComponent<playermovement>().enabled = false;
+                if (GetComponent<playermovement>() != null)
+                    GetComponent<playermovement>().enabled = false;
 
                 if (GetComponentInParent<EnemyPatrol>() != null)
                     GetComponentInParent<EnemyPatrol>().enabled = false;
@@ -75,7 +89,7 @@ public class Health : MonoBehaviour
                 if (GetComponent<MeleeEnemy>() != null)
                     GetComponent<MeleeEnemy>().enabled = false;
 
-                foreach(Behaviour components in components)
+                foreach (Behaviour components in components)
                 {
                     components.enabled = false;
                 }
@@ -84,11 +98,10 @@ public class Health : MonoBehaviour
                 anim.SetTrigger("die");
 
                 dead = true;
-                AudioManager.instance.PlaySound(deathSound);
+                if (deathSound != null) AudioManager.instance.PlaySound(deathSound);
             }
         }
     }
-
     public void AddHealth(float _value)
     {
           currentHealth =Mathf.Clamp(currentHealth + _value,0, startingHealth);
